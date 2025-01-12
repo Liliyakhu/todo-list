@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <br>
+  <h1>Task List <a
+      class="btn btn-primary"
+      style="float: right"
+      href="{% url 'todo:task-create' %}">
+    Add task
+  </a></h1>
+
+  <br>
+  {% if task_list %}
+
+    {% for task in task_list %}
+      <p style="font-weight: bold">{{ task.content }}
+        {% if task.done %}
+          <span style="color: green">Done</span>
+        {% else %}
+          <span style="color: red">Not Done</span>
+        {% endif %}
+
+
+        {% if task.done %}
+          <a href="{% url 'todo:toggle-done-assign' pk=task.id %}" class="btn btn-secondary link-to-page" style="float: right; margin-left: 10px">
+            Undo
+          </a>
+        {% else %}
+          <a href="{% url 'todo:toggle-done-assign' pk=task.id %}" class="btn btn-success link-to-page" style="float: right; margin-left: 10px">
+            Complete
+          </a>
+        {% endif %}
+        
+
+      </p>
+      <p>Created: {{ task.datetime }} 
+        {% if task.deadline %}
+        <span style="color: brown">Deadline: {{ task.deadline }}</span>
+          {% else %}
+          
+      {% endif %}
+      </p>
+      <p>Tags:
+        {% for tag in task.tags.all %}
+          {{ tag }}
+        {% endfor %}
+
+        <a href="{% url 'todo:task-update' pk=task.id %}"
+                   class="btn btn-secondary link-to-page"
+            {#       style="float: right; margin-left: 10px"#}
+        >
+          Update
+        </a>
+        <a href="{% url 'todo:task-delete' pk=task.id %}"
+                   class="btn btn-danger link-to-page"
+            {#       style="float: right"#}
+        >
+          Delete
+        </a>
+
+
+      </p>
+      <hr>
+    {% endfor %}
+  {% else %}
+    <p>There are no products.</p>
+  {% endif %}
+{% endblock %}
