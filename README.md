@@ -50,6 +50,6 @@ python manage.py runserver
 ## Screenshots
 
 ### Home page:
-![Screenshot from 2024-12-04 22-51-12](https://github.com/Liliyakhu/todo-list/pull/1#issue-2782667972)
+![Screenshot from 2025-01-12 21-58-52](https://github.com/user-attachments/assets/6481fcbf-ef47-49c6-87dd-9071ca014613)
 ### Tags page:
-![Screenshot from 2024-12-04 22-55-25](https://github.com/user-attachments/assets/d54dbd9b-b469-4455-9212-72cbfe21034f)
+![Screenshot from 2025-01-12 21-59-45](https://github.com/user-attachments/assets/fdf33e44-147b-4dba-8ef9-c04992200aef)
