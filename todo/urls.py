@@ -9,7 +9,7 @@ from todo.views import (
     TagCreateView,
     TagUpdateView,
     TagDeleteView,
-    toggle_assign_to_done
+    # toggle_assign_to_done
 )
 
 
@@ -22,8 +22,6 @@ urlpatterns = [
     path("tags/create/", TagCreateView.as_view(), name="tag-create"),
     path("tags/<int:pk>/update/", TagUpdateView.as_view(), name="tag-update"),
     path("tags/<int:pk>/delete/", TagDeleteView.as_view(), name="tag-delete"),
-    path("<int:pk>/toggle-assign/", toggle_assign_to_done, name="toggle-done-assign",
-    ),
 ]
 
 app_name = "todo"

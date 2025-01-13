@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -12,6 +12,13 @@ class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.all()
     paginate_by = 5
+
+    def post(self, request, *args, **kwargs):
+        task_id = request.POST.get("task_id")
+        task = get_object_or_404(Task, id=task_id)
+        task.done = not task.done
+        task.save()
+        return HttpResponseRedirect(reverse_lazy("todo:task-list"))
 
 
 class TaskCreateView(generic.CreateView):
@@ -57,15 +64,3 @@ class TagDeleteView(generic.DeleteView):
     model = Tag
     template_name = "todo/tag_confirm_delete.html"
     success_url = reverse_lazy("todo:tag-list")
-
-
-def toggle_assign_to_done(request, pk):
-    task = Task.objects.get(id=pk)
-    print(task.done)
-    if task.done:  # probably could check if car exists
-        task.done = False
-        task.save()
-    else:
-        task.done = True
-        task.save()
-    return HttpResponseRedirect(reverse_lazy("todo:task-list"))

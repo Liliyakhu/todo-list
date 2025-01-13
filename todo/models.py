@@ -6,7 +6,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ("name", )
+        ordering = ("name",)
 
     def __str__(self):
         return self.name
@@ -24,12 +24,12 @@ class Task(models.Model):
         ordering = ("done", "-datetime")
 
     def __str__(self):
-        return (f"{self.content} ("
-                f"datetime: {self.datetime}, "
-                f"deadline: {self.deadline}, "
-                f"done: {self.done})"
-                )
+        return (
+            f"{self.content} ("
+            f"datetime: {self.datetime}, "
+            f"deadline: {self.deadline}, "
+            f"done: {self.done})"
+        )
 
     def get_absolute_url(self):
         return reverse("todo:task-list", args=[str(self.id)])
-

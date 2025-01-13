@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
-
 {% block content %}
   <br>
   <h1>Tag List <a
@@ -9,11 +8,8 @@
       href="{% url 'todo:tag-create' %}">
     Add tag
   </a></h1>
-
   <br>
   {% if tag_list %}
-
-
     <table class="table">
       <tr>
         <th>ID</th>
@@ -42,7 +38,6 @@
         </tr>
       {% endfor %}
     </table>
-    
   {% else %}
     <p>There are no products.</p>
   {% endif %}
